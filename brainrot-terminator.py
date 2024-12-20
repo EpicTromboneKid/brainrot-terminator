@@ -21,6 +21,7 @@ brainrot_words = brainrot_words = [
 
 disable = False
 mentions = False
+physics = True
 
 def toggle(arg):
     global disable
@@ -29,6 +30,14 @@ def toggle(arg):
 
 def disabled():
     return disable
+
+def physicsmain(arg):
+    global physics
+    physics = arg
+    return main
+
+def main():
+    return physics
 
 def mention(arg):
     global mentions
@@ -47,6 +56,22 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+
+    if message.content == 'brainrot shut the frik up':
+        await message.channel.send('no u')
+
+    # elif message.content == 'brainrot shut the frick up' and message.author.name == 'ic8300':
+    #     physicsmain(False)
+    #     await message.channel.send('Ok physics main!')
+    # elif message.content == 'brainrot where r u' and message.author.name == 'ic8300':
+    #     physicsmain(True)
+    #     await message.channel.send('PHYSICS MAIN!!!!!!')
+        
+
+    if 'oppenheimer' in message.content.lower():
+        await message.channel.send('I am become death, destroyer of worlds.')
+        await message.channel.send(file=discord.File('oppenheimer.jpeg'))
+
     if message.author == client.user:
         return
     
